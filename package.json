@@ -2,6 +2,7 @@
   "name": "timon-order",
   "version": "1.0.0",
   "description": "Timon Order is a plugin made for paging in mongoose",
+  "readmeFilename": "README.md",
   "main": "./dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -17,7 +18,10 @@
     "paginate",
     "aggregate"
   ],
-  "author": "Thais Ribeiro <thaisnribeiro2008@gmail.com>",
+  "author": {
+    "name": "Thais do Nascimento Ribeiro",
+    "email": "thaisnribeiro2008@gmail.com"
+  },
   "license": "ISC",
   "files": [
     "dist"
