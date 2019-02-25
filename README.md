@@ -1,7 +1,7 @@
 # Timon Order
+![Timon](https://github.com/thaisribeiro/timon-order/blob/master/meerkat-3828228_1280.jpg)
 
 > [Mongoose](http://mongoosejs.com) based paging library
-
 
 ## Installation
 
