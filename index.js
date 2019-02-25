@@ -1,4 +1,4 @@
-export async function paginate(filter, options) {
+async function paginate(filter, options) {
   options = Object.assign({}, options)
   const params = filter || {}
   const page = options.page ? options.page : 1
@@ -20,7 +20,7 @@ export async function paginate(filter, options) {
   }
 }
 
-export async function paginateAggregate(filter, options) {
+async function paginateAggregate(filter, options) {
   options = Object.assign({}, options)
   const page = options.page ? options.page : 1
   const limit = options.limit ? options.limit : 10
@@ -42,3 +42,11 @@ export async function paginateAggregate(filter, options) {
     pages: Math.ceil(count / limit) || 1
   }
 }
+
+module.exports = function (schema) {
+  schema.statics.paginate = paginate
+  schema.statics.paginateAggregate = paginateAggregate
+}
+
+module.exports.paginate = paginate
+module.exports.paginateAggregate = paginateAggregate
