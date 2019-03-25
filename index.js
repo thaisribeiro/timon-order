@@ -1,13 +1,29 @@
-async function paginate(filter, options) {
+async function paginate (filter, options, populate) {
   options = Object.assign({}, options)
   const params = filter || {}
   const page = options.page ? options.page : 1
   const limit = options.limit ? options.limit : 10
+  let data = []
 
-  const data = await this.find(params)
-    .skip((limit * page) - limit)
-    .limit(limit)
-    .lean()
+  if (!populate) {
+    data = await this.find(params)
+      .skip((limit * page) - limit)
+      .limit(limit)
+      .lean()
+  } else {
+    populate = {
+      ...populate,
+      options: {
+        skip: ((limit * page) - limit),
+        limit: limit
+      }
+    }
+    data = await this.find(params)
+      .populate(populate)
+      .skip((limit * page) - limit)
+      .limit(limit)
+      .lean()
+  }
 
   const count = (await this.find(params)).length
 
@@ -20,7 +36,7 @@ async function paginate(filter, options) {
   }
 }
 
-async function paginateAggregate(filter, options) {
+async function paginateAggregate (filter, options) {
   options = Object.assign({}, options)
   const page = options.page ? options.page : 1
   const limit = options.limit ? options.limit : 10
