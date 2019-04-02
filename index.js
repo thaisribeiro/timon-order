@@ -11,13 +11,6 @@ async function paginate (filter, options, populate) {
       .limit(limit)
       .lean()
   } else {
-    populate = {
-      ...populate,
-      options: {
-        skip: ((limit * page) - limit),
-        limit: limit
-      }
-    }
     data = await this.find(params)
       .populate(populate)
       .skip((limit * page) - limit)
